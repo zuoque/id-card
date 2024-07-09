@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../dist/id-card.umd.cjs"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="box"></div>
+        <!--<canvas id="id-card-front"></canvas>
+
+        <canvas id="id-card-back"></canvas>-->
+    </div>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const { randomIdCard } = window.zqIdCardGenerator;
+      const idNo = "120116199206081796";
+
+      randomIdCard().then(idCardInfo => {
+        console.log(idCardInfo)
+        document.querySelector("#box").appendChild(idCardInfo.frontCanvas);
+        document.querySelector("#box").appendChild(idCardInfo.backCanvas);
+      })
+
+      // 指定姓名
+      randomIdCard("张三丰").then(idCardInfo => {
+        console.log(idCardInfo)
+        document.querySelector("#box").appendChild(idCardInfo.frontCanvas);
+        document.querySelector("#box").appendChild(idCardInfo.backCanvas);
+      })
+
+      // 指定身份证号
+      randomIdCard("120116199206083118").then(idCardInfo => {
+        console.log(idCardInfo)
+        document.querySelector("#box").appendChild(idCardInfo.frontCanvas);
+        document.querySelector("#box").appendChild(idCardInfo.backCanvas);
+      })
+
+      // 指定姓名和身份证号
+      randomIdCard("张君宝", "420607199206087874").then(idCardInfo => {
+        console.log(idCardInfo)
+        document.querySelector("#box").appendChild(idCardInfo.frontCanvas);
+        document.querySelector("#box").appendChild(idCardInfo.backCanvas);
+      })
+
+      /*window.zqIdCardGenerator.genIdCardFront({
+        canvas: "#id-card-front",
+        name: "李名山",
+        idNo: idNo,
+        // address: "安徽省六安市霍邱县",
+      });*/
+
+      /*window.zqIdCardGenerator.genIdCardBack({
+        canvas: "#id-card-back",
+        idNo: idNo,
+      });*/
+    })
+</script>
+</body>
+</html>
