@@ -1,0 +1,15 @@
+{
+  "name": "test-id-card-generator",
+  "version": "1.0.0",
+  "description": "测试身份证生成器的相关函数",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "@zuoque/id-card": "file:../../id-card"
+  },
+  "license": "ISC"
+}
