@@ -14,7 +14,7 @@ export default defineConfig( ({ mode}) => {
         fileName: "main",
       },
       rollupOptions: {
-        external: ['vue'],
+        external: ['vue', 'canvas'],
       }
     },
 
