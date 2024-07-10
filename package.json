@@ -1,12 +1,38 @@
 {
-  "name": "id-card",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@zuoque/id-card",
+  "description": "身份证图片生成器，mock数据时使用",
+  "keywords": [
+    "typescript",
+    "canvas",
+    "mock",
+    "随机生成",
+    "身份证图片"
+  ],
+  "private": false,
+  "version": "0.0.1",
+  "author": "zuoque",
   "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/types/main.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuoque/id-card.git#main"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/main.d.ts",
+      "require": "./dist/main.umd.cjs",
+      "default": "./dist/main.js"
+    }
+  },
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "npm run build && npm publish",
+    "example": "cd example && http-server -p 9000"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.10",
@@ -20,5 +46,14 @@
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
     "vite-plugin-dts": "^3.9.1"
+  },
+  "bugs": {
+    "url": "https://github.com/zuoque/id-card/issues"
+  },
+  "homepage": "https://github.com/zuoque/id-card/tree/main#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

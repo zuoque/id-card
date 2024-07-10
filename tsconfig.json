@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "incremental": true,
+    "tsBuildInfoFile": "./.build-cache-file.local",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",

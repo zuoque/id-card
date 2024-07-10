@@ -11,6 +11,7 @@ export default defineConfig( ({ mode}) => {
       lib: {
         entry: resolve(__dirname, 'src/main.ts'),
         name: "zqIdCardGenerator",
+        fileName: "main",
       },
       rollupOptions: {
         external: ['vue'],
