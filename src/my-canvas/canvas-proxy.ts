@@ -1,6 +1,7 @@
-// import "./canvas-extension"
 import { isBrowser } from "../utils";
-import * as nodeCanvas from "canvas"
+import * as nodeCanvas from "canvas";
+
+export default nodeCanvas;
 
 export const CanvasContext2D = isBrowser
     ? window.CanvasRenderingContext2D
@@ -100,5 +101,3 @@ export type CanvasContext2DType = nodeCanvas.CanvasRenderingContext2D | CanvasRe
         };
     }
 })(CanvasContext2D);
-
-export default nodeCanvas;

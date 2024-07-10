@@ -36,27 +36,3 @@ export const createCanvas = (width: number, height: number, type?: 'pdf'|'svg'):
 
     return nodeCanvas.createCanvas(width, height, type);
 };
-
-export const getContext = (canvas: CanvasEntity) => {
-    if (canvas instanceof nodeCanvas.Canvas) {
-        return canvas.getContext("2d") as nodeCanvas.CanvasRenderingContext2D;
-    }
-
-    return canvas.getContext("2d") as CanvasRenderingContext2D;
-}
-
-export const createCanvasAndCtx2d = (width: number, height: number, type?: 'pdf'|'svg') => {
-    const canvas = createCanvas(width, height, type);
-    if (!canvas) {
-        throw new Error("create canvas failed");
-    }
-
-    const ctx = getContext(canvas);
-
-    return {
-        canvas,
-        ctx,
-    }
-}
-
-export default nodeCanvas
