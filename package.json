@@ -36,9 +36,7 @@
   },
   "dependencies": {
     "@zuoque/random-coding": "^0.0.10",
-    "canvas": "^2.11.2",
-    "date-fns": "^2.22.1",
-    "mockjs": "^1.1.0"
+    "canvas": "^2.11.2"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.10",

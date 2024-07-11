@@ -1,7 +1,7 @@
 import { getCanvas, loadImage, loadBackground, getAddrByIdNo } from "./idCard";
 import { IdCardInfo, parseIdCard } from "./utils";
 import { idNoUtils } from "@zuoque/random-coding";
-import { mock } from "mockjs";
+import { mock } from "./helper/mock";
 import { CanvasContext2DType, CanvasEntity, ImageEntity } from "./my-canvas";
 import bgImgUrl from "./assets/id-card-renxiang.png";
 import manAvatarUrl from "./assets/man.png";
@@ -14,7 +14,7 @@ const buildAddrByIdNo = (idNo?: string): string => {
   }
 
   if (county) {
-    return mock(`${county}@cword(2, 3)街道@cword(2, 3)路@natural(10, 1000)弄@natural(1, 10)号@natural(10, 1808)室`);
+    return `${county}${mock.cword(2, 6)}路${mock.natural(10, 1000)}弄${mock.natural(1, 10)}号${mock.natural(10, 1808)}室`;
   }
 
   return "上海市浦东新区塘桥街道蓝村路471弄10号1801室";
@@ -157,15 +157,15 @@ export async function randomIdCardFront (nameOrIdNo?: string, idNo?: string): Pr
   let name = nameOrIdNo;
   // 无参的情况
   if (nameOrIdNo === undefined && idNo === undefined) {
-    name = mock("@cname"); // 随机生成姓名
     idNo = idNoUtils.generate(); // 随机生成身份证号
+    name = mock.cname(parseIdCard(idNo)?.sex); // 随机生成姓名
   }
   // 只有一个参数的情况
   if (nameOrIdNo && idNo === undefined) {
     const isIdNo = /^\d{17}(\d|X|x)$/.test(nameOrIdNo);
     if (isIdNo) {
-      name = mock("@cname"); // 随机生成姓名
       idNo = nameOrIdNo
+      name = mock.cname(parseIdCard(idNo)?.sex); // 随机生成姓名
     } else {
       if (/^\d/.test(nameOrIdNo)) {
         throw new Error("请检查身份证号是否正确?");

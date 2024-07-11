@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { idNoUtils } from "@zuoque/random-coding"
 
 type DateOrDateStr = Date | string;
@@ -30,8 +29,22 @@ export const toDate = (dateOrDateStr: DateOrDateStr): Nullable<Date> => {
 export const formatDate = (dateOrDateStr: DateOrDateStr, formatStr = "yyyy-MM-dd HH:mm:ss"): string => {
   const date = toDate(dateOrDateStr);
   // 解析不出来的直接原样返回
-  if (!date) return '';
-  return `${format(date, formatStr)}`;
+  if (!date || !formatStr) return '';
+  const _padZero = (number: number, length = 2) => {
+    return String(number).padStart(length, '0');
+  };
+  const replacements = {
+    yyyy: date.getFullYear() + "",
+    yy: String(date.getFullYear()).slice(-2),
+    MM: _padZero(date.getMonth() + 1),
+    dd: _padZero(date.getDate()),
+    HH: _padZero(date.getHours()),
+    mm: _padZero(date.getMinutes()),
+    ss: _padZero(date.getSeconds()),
+  };
+
+  type ReplaceKeys = keyof typeof replacements;
+  return formatStr.replace(/yyyy|yy|MM|dd|HH|mm|ss/g, (match: string) => replacements[match as ReplaceKeys]);
 };
 
 /**
